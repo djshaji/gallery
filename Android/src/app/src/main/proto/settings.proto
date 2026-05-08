@@ -64,6 +64,15 @@ message LlmConfig {
   bool support_speculative_decoding = 11;
 }
 
+message EndpointSettings {
+  int32 port = 1;
+  string selected_model_name = 2;
+  bool allow_streaming = 3;
+  int32 max_queue_size = 4;
+  int64 request_timeout_ms = 5;
+  int64 token_created_at_ms = 6;
+}
+
 message Settings {
   Theme theme = 1;
   AccessTokenData access_token_data = 2;  // deprecated
@@ -81,6 +90,7 @@ message Settings {
   // copybara:strip_end
 
   repeated string viewed_promo_id = 10;
+  EndpointSettings endpoint_settings = 11;
 }
 
 message UserData {

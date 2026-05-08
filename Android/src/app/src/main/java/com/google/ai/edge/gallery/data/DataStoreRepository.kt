@@ -22,6 +22,7 @@ import com.google.ai.edge.gallery.proto.BenchmarkResult
 import com.google.ai.edge.gallery.proto.BenchmarkResults
 import com.google.ai.edge.gallery.proto.Cutout
 import com.google.ai.edge.gallery.proto.CutoutCollection
+import com.google.ai.edge.gallery.proto.EndpointSettings
 import com.google.ai.edge.gallery.proto.ImportedModel
 import com.google.ai.edge.gallery.proto.Settings
 import com.google.ai.edge.gallery.proto.Skill
@@ -109,6 +110,22 @@ interface DataStoreRepository {
 
   /** Returns whether a promo with the specified ID has been viewed. */
   fun hasViewedPromo(promoId: String): Boolean
+
+  fun readEndpointSettings(): EndpointSettings
+
+  fun saveEndpointSettings(settings: EndpointSettings)
+
+  fun readEndpointSelectedModelName(): String
+
+  fun saveEndpointSelectedModelName(modelName: String)
+
+  fun readEndpointPort(): Int
+
+  fun saveEndpointPort(port: Int)
+
+  fun readEndpointTokenCreatedAt(): Long
+
+  fun saveEndpointTokenCreatedAt(createdAtMs: Long)
 }
 
 /** Repository for managing data using Proto DataStore. */
@@ -431,6 +448,67 @@ class DefaultDataStoreRepository(
     return runBlocking {
       val settings = dataStore.data.first()
       settings.viewedPromoIdList.contains(promoId)
+    }
+  }
+
+  override fun readEndpointSettings(): EndpointSettings {
+    return runBlocking { dataStore.data.first().endpointSettings }
+  }
+
+  override fun saveEndpointSettings(settings: EndpointSettings) {
+    runBlocking {
+      dataStore.updateData { currentSettings ->
+        currentSettings.toBuilder().setEndpointSettings(settings).build()
+      }
+    }
+  }
+
+  override fun readEndpointSelectedModelName(): String {
+    return readEndpointSettings().selectedModelName
+  }
+
+  override fun saveEndpointSelectedModelName(modelName: String) {
+    runBlocking {
+      dataStore.updateData { settings ->
+        settings
+          .toBuilder()
+          .setEndpointSettings(
+            settings.endpointSettings.toBuilder().setSelectedModelName(modelName).build()
+          )
+          .build()
+      }
+    }
+  }
+
+  override fun readEndpointPort(): Int {
+    return readEndpointSettings().port
+  }
+
+  override fun saveEndpointPort(port: Int) {
+    runBlocking {
+      dataStore.updateData { settings ->
+        settings
+          .toBuilder()
+          .setEndpointSettings(settings.endpointSettings.toBuilder().setPort(port).build())
+          .build()
+      }
+    }
+  }
+
+  override fun readEndpointTokenCreatedAt(): Long {
+    return readEndpointSettings().tokenCreatedAtMs
+  }
+
+  override fun saveEndpointTokenCreatedAt(createdAtMs: Long) {
+    runBlocking {
+      dataStore.updateData { settings ->
+        settings
+          .toBuilder()
+          .setEndpointSettings(
+            settings.endpointSettings.toBuilder().setTokenCreatedAtMs(createdAtMs).build()
+          )
+          .build()
+      }
     }
   }
 }

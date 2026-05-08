@@ -140,6 +140,11 @@
             </intent-filter>
         </service>
 
+        <service
+            android:name=".endpoint.service.EndpointForegroundService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="gallery_high_priority_push_channel" />

@@ -42,6 +42,8 @@ For users without Google Play access, install the apk from the [**latest release
 
 * **Prompt Lab**: A dedicated workspace to test different prompts and single-turn use cases with granular control over model parameters like temperature and top-k.
 
+* **Local API Endpoint**: Start a bearer-token-protected OpenAI-compatible endpoint on the device and connect local tools to `GET /healthz`, `GET /v1/models`, and `POST /v1/chat/completions`, including streaming chat completions.
+
 * **Mobile Actions**: Unlock offline device controls and automated tasks powered entirely by a finetune of FunctionGemma 270m.
 
 * **Tiny Garden**: A fun, experimental mini-game that uses natural language to plant and harvest a virtual garden using a finetune of FunctionGemma 270m.
@@ -67,6 +69,28 @@ For users without Google Play access, install the apk from the [**latest release
 ## ⌨️ Development
 
 Check out the [development notes](DEVELOPMENT.md) for instructions about how to build the app locally.
+
+### Local API Endpoint
+
+The Android app includes an experimental **Local API Endpoint** capability on the home screen.
+
+1. Download at least one supported LLM model in the app.
+2. Open **Local API Endpoint** from the home screen.
+3. Select the serving model and tap **Start server**.
+4. Copy the base URL and bearer token from the dashboard.
+5. Point a local OpenAI-compatible client at the endpoint.
+
+Current endpoint surface:
+
+- `GET /healthz`
+- `GET /v1/models`
+- `POST /v1/chat/completions`
+
+Notes:
+
+- the endpoint listens on all available interfaces
+- `/v1/*` routes require the bearer token shown in the dashboard
+- the dashboard shows queue depth, request counts, timeout policy, and last error state
 
 ## 🤝 Feedback
 

@@ -121,6 +121,51 @@
   <string name="memory_warning_title" translatable="false">Memory Warning</string>
   <string name="max_tokens_warning_message" translatable="false">Setting max tokens above 10000 may cause app to be unstable.</string>
   <string name="model_is_initializing_msg" translatable="false">Initializing model…</string>
+  <string name="local_api_endpoint_label" translatable="false">Local API Endpoint</string>
+  <string name="local_api_endpoint_description" translatable="false">Run a local OpenAI-compatible API endpoint backed by an on-device model.</string>
+  <string name="local_api_endpoint_status" translatable="false">Endpoint status</string>
+  <string name="local_api_endpoint_start" translatable="false">Start server</string>
+  <string name="local_api_endpoint_stop" translatable="false">Stop server</string>
+  <string name="local_api_endpoint_select_model" translatable="false">Select serving model</string>
+  <string name="local_api_endpoint_no_models" translatable="false">Download an LLM model first to use the local endpoint.</string>
+  <string name="local_api_endpoint_base_url" translatable="false">Base URL</string>
+  <string name="local_api_endpoint_auth_token" translatable="false">Bearer token</string>
+  <string name="local_api_endpoint_rotate_token" translatable="false">Rotate token</string>
+  <string name="local_api_endpoint_copy_url" translatable="false">Copy URL</string>
+  <string name="local_api_endpoint_copy_token" translatable="false">Copy token</string>
+  <string name="local_api_endpoint_ready" translatable="false">Ready</string>
+  <string name="local_api_endpoint_enabled" translatable="false">Enabled</string>
+  <string name="local_api_endpoint_disabled" translatable="false">Disabled</string>
+  <string name="local_api_endpoint_not_running" translatable="false">Stopped</string>
+  <string name="local_api_endpoint_starting" translatable="false">Starting</string>
+  <string name="local_api_endpoint_running" translatable="false">Running</string>
+  <string name="local_api_endpoint_stopping" translatable="false">Stopping</string>
+  <string name="local_api_endpoint_error" translatable="false">Endpoint error</string>
+  <string name="local_api_endpoint_model_not_ready" translatable="false">Selected model is not ready yet.</string>
+  <string name="local_api_endpoint_selected_model" translatable="false">Selected model</string>
+  <string name="local_api_endpoint_runtime" translatable="false">Runtime</string>
+  <string name="local_api_endpoint_configured_max_tokens" translatable="false">Configured max tokens</string>
+  <string name="local_api_endpoint_known_context_window" translatable="false">Known context window</string>
+  <string name="local_api_endpoint_requests" translatable="false">Requests</string>
+  <string name="local_api_endpoint_failed_requests" translatable="false">Failed requests</string>
+  <string name="local_api_endpoint_cancelled_requests" translatable="false">Cancelled requests</string>
+  <string name="local_api_endpoint_timed_out_requests" translatable="false">Timed out requests</string>
+  <string name="local_api_endpoint_active_requests" translatable="false">Active requests</string>
+  <string name="local_api_endpoint_queue_depth" translatable="false">Queue depth</string>
+  <string name="local_api_endpoint_queue_capacity" translatable="false">Queue capacity</string>
+  <string name="local_api_endpoint_avg_latency" translatable="false">Average latency</string>
+  <string name="local_api_endpoint_request_timeout" translatable="false">Request timeout</string>
+  <string name="local_api_endpoint_streaming" translatable="false">Streaming</string>
+  <string name="local_api_endpoint_no_token" translatable="false">No token generated yet.</string>
+  <string name="local_api_endpoint_token_created" translatable="false">Token created</string>
+  <string name="local_api_endpoint_server_started" translatable="false">Server started</string>
+  <string name="local_api_endpoint_ready_since" translatable="false">Ready since</string>
+  <string name="local_api_endpoint_last_request_id" translatable="false">Last request ID</string>
+  <string name="local_api_endpoint_not_available" translatable="false">Not available</string>
+  <string name="local_api_endpoint_token_limit_note" translatable="false">Request max_tokens can override the configured value, but the selected model and runtime still determine the real limit.</string>
+  <string name="local_api_endpoint_selected_prefix" translatable="false">Selected: %1$s</string>
+  <string name="local_api_endpoint_notification_title" translatable="false">Local API endpoint</string>
+  <string name="local_api_endpoint_notification_text" translatable="false">Serving a local OpenAI-compatible endpoint on this device.</string>
   <string name="model_list_imported_models_title" translatable="false">Imported models</string>
   <plurals name="model_list_number_of_models_available" translatable="false">
     <item quantity="one">%d model available</item>

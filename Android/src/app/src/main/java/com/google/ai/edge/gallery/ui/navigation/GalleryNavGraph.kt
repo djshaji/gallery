@@ -75,6 +75,9 @@ import com.google.ai.edge.gallery.customtasks.common.CustomTaskDataForBuiltinTas
 import com.google.ai.edge.gallery.data.ModelDownloadStatusType
 import com.google.ai.edge.gallery.data.Task
 import com.google.ai.edge.gallery.data.isLegacyTasks
+import com.google.ai.edge.gallery.endpoint.ROUTE_LOCAL_API_ENDPOINT
+import com.google.ai.edge.gallery.endpoint.TASK_ID_LOCAL_API_ENDPOINT
+import com.google.ai.edge.gallery.endpoint.ui.EndpointDashboardScreen
 import com.google.ai.edge.gallery.firebaseAnalytics
 import com.google.ai.edge.gallery.ui.benchmark.BenchmarkScreen
 import com.google.ai.edge.gallery.ui.common.ErrorDialog
@@ -199,9 +202,13 @@ fun GalleryNavHost(
             tosViewModel = hiltViewModel(),
             enableAnimation = enableHomeScreenAnimation,
             navigateToTaskScreen = { task ->
-              pickedTask = task
-              enableModelListAnimation = true
-              navController.navigate(ROUTE_MODEL_LIST)
+              if (task.id == TASK_ID_LOCAL_API_ENDPOINT) {
+                navController.navigate(ROUTE_LOCAL_API_ENDPOINT)
+              } else {
+                pickedTask = task
+                enableModelListAnimation = true
+                navController.navigate(ROUTE_MODEL_LIST)
+              }
               firebaseAnalytics?.logEvent(
                 GalleryEvent.CAPABILITY_SELECT.id,
                 Bundle().apply { putString("capability_name", task.id) },
@@ -246,6 +253,20 @@ fun GalleryNavHost(
           }
         }
       }
+    }
+
+    composable(
+      route = ROUTE_LOCAL_API_ENDPOINT,
+      enterTransition = { slideEnter() },
+      exitTransition = { slideExit() },
+    ) {
+      EndpointDashboardScreen(
+        modelManagerViewModel = modelManagerViewModel,
+        navigateUp = {
+          enableHomeScreenAnimation = false
+          navController.navigateUp()
+        },
+      )
     }
 
     // Model list.
